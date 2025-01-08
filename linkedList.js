@@ -26,8 +26,28 @@ class LinkedList {
       this.tail = newNode;
     }
   }
+  pop() {
+    if (!this.head) {
+      return undefined;
+    }
+    let pre = this.head;
+    let temp = this.head;
+    while (temp.next) {
+      pre = temp;
+      temp = temp.next;
+    }
+    this.tail = pre;
+    this.tail.next = null;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+      this.head = null;
+    }
+  }
 }
 
-const myLinkedList = new LinkedList(3);
+const myLinkedList = new LinkedList(5);
+console.log(myLinkedList);
+myLinkedList.pop();
 
 console.log(myLinkedList);

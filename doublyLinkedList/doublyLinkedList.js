@@ -27,6 +27,7 @@ class DoublyLinkedList {
       current = current.next;
     }
   }
+  //end method
   push(value) {
     const newNode = new Node(value);
     if (!this.head) {
@@ -41,8 +42,27 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
+  //end method
+  pop() {
+    if (!this.head) return undefined;
+    let temp = this.tail;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = this.tail.prev;
+      this.tail.next = null;
+    }
+
+    temp.prev = null;
+    temp.next = null;
+    this.length--;
+
+    return temp;
+  }
 }
 
-const myDll = new DoublyLinkedList(5);
+const myDll = new DoublyLinkedList(3);
 
+console.log(myDll);
 myDll.display();

@@ -7,9 +7,9 @@ class Node {
 
 function arrayToLL(arr) {
   if (arr.length === 0) return null;
-
-  const head = new Node(arr[0]); // Create the head node
-  let current = head; // Pointer to build the list
+  const newNode = new Node(arr[0]);
+  const head = newNode; // Create the head node
+  let current = newNode; // Pointer to build the list
   let length = 1; // Initialize length
 
   for (let i = 1; i < arr.length; i++) {

@@ -19,7 +19,6 @@ class DoublyLinkedList {
       this.length = 0;
     }
   }
-
   display() {
     let current = this.head;
     while (current) {
@@ -27,7 +26,7 @@ class DoublyLinkedList {
       current = current.next;
     }
   }
-  //end method
+  // end method
   push(value) {
     const newNode = new Node(value);
     if (!this.head) {
@@ -42,7 +41,7 @@ class DoublyLinkedList {
     this.length++;
     return this;
   }
-  //end method
+  // end method
   pop() {
     if (!this.head) return undefined;
     let temp = this.tail;
@@ -60,7 +59,7 @@ class DoublyLinkedList {
 
     return temp;
   }
-  //end method
+  // end method
   shift() {
     if (!this.head) return undefined;
     let temp = this.head;
@@ -70,32 +69,100 @@ class DoublyLinkedList {
     } else {
       this.head = this.head.next;
       this.head.prev = null;
+      temp.next = null;
     }
-    temp.next = null;
-    temp.prev = null;
+
     this.length--;
     return temp;
   }
+  // end method
   unshift(value) {
     const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
-      this.length++;
-      return this;
+    } else {
+      newNode.next = this.head;
+      this.head.prev = newNode;
+      this.head = newNode;
     }
-    newNode.next = this.head;
-    this.head.prev = newNode;
-    this.head = newNode;
+
     this.length++;
     return this;
   }
+  // end method
+  get(index) {
+    if (index < 0 || index >= this.length) return undefined;
+    let temp = this.head;
+    if (index < this.length / 2) {
+      for (let i = 0; i < index; i++) {
+        temp = temp.next;
+      }
+    } else {
+      temp = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        temp = temp.prev;
+      }
+    }
+
+    temp.next = 0;
+    temp.prev = 0;
+    return temp;
+  }
+  // end method
+  set(index, value) {
+    if (index < 0 || index >= this.length) return undefined;
+    let temp = this.head;
+    if (index < this.length / 2) {
+      for (let i = 0; i < index; i++) {
+        temp = temp.next;
+      }
+    } else {
+      temp = this.tail;
+      for (let i = this.length - 1; i > index; i--) {
+        temp = temp.prev;
+      }
+    }
+    temp.value = value;
+    return this;
+  }
+  inset(index, value) {
+    // Ensure valid index (index should be >= 0 and < this.length)
+    if (index < 0 || index > this.length) return false;
+
+    // Handle inserting at the beginning (index 0)
+    if (index === 0) return this.unshift(value);
+
+    // Handle inserting at the end (last index)
+    if (index === this.length) return this.push(value);
+
+    const newNode = new Node(value);
+    let temp = this.head;
+
+    // Traverse the list to the desired index
+    for (let i = 0; i < index; i++) {
+      temp = temp.next;
+    }
+
+    // Get the previous node and insert the new node
+    let prev = temp.prev;
+    prev.next = newNode;
+    newNode.prev = prev;
+    newNode.next = temp;
+    temp.prev = newNode;
+
+    return true;
+  }
+  // end method
 }
 
 const myDll = new DoublyLinkedList(3);
 myDll.unshift(45);
-
+myDll.unshift(29);
+myDll.unshift(44);
+myDll.unshift(57);
+myDll.set(4, 200);
 myDll.display();
-myDll.shift();
+
 console.log("..........");
 myDll.display();

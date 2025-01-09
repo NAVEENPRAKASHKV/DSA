@@ -60,9 +60,42 @@ class DoublyLinkedList {
 
     return temp;
   }
+  //end method
+  shift() {
+    if (!this.head) return undefined;
+    let temp = this.head;
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = this.head.next;
+      this.head.prev = null;
+    }
+    temp.next = null;
+    temp.prev = null;
+    this.length--;
+    return temp;
+  }
+  unshift(value) {
+    const newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+      this.length++;
+      return this;
+    }
+    newNode.next = this.head;
+    this.head.prev = newNode;
+    this.head = newNode;
+    this.length++;
+    return this;
+  }
 }
 
 const myDll = new DoublyLinkedList(3);
+myDll.unshift(45);
 
-console.log(myDll);
+myDll.display();
+myDll.shift();
+console.log("..........");
 myDll.display();

@@ -114,4 +114,4 @@ function pairup(arr, target) {
   return pair;
 }
 
-console.log(pairup(arr, 5));
+console.log(rotateArray(arr1, 3));

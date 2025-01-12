@@ -7,5 +7,5 @@ function fabinocci(n) {
   return series;
 }
 
-const result = fabinocci(7);
-console.log(result);
+// const result = fabinocci(7);
+// console.log(result);

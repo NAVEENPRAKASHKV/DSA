@@ -95,8 +95,44 @@ function titleCase(str) {
   });
   return mappedArray.join(" ");
 }
+// to check the anagram
+function isAnagram(str1, str2) {
+  const str1Sorted = str1
+    .replace(/\s+/g, "")
+    .toLowerCase()
+    .split("")
+    .sort()
+    .join("");
+  const str2Sorted = str2
+    .replace(/\s+/g, "")
+    .toLowerCase()
+    .split("")
+    .sort()
+    .join("");
+  return str1Sorted === str2Sorted ? true : false;
+}
+// find longest word in the sentense
+function largestWord(str) {
+  let strArray = str.split(" ");
+  let long = strArray.reduce(
+    (longest, word) => (longest.length < word.length ? word : longest),
+    ""
+  );
+  return long;
+}
+// replace all occurace of a character
+function replaceAllOccurance(str, target, replacement) {
+  return str.split(target).join(replacement);
+}
+//remove all digit from the string
+function removeDigit(str) {
+  return str.replace(/\d+/g, "");
+}
+//capitalize first letter of a sentence
+function capitalizeFirstLetter(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 
-function isAnagram(str1, str2) {}
-const result = titleCase("swssshsshsdsssh dsf defdf df df       ");
+const result = largestWord("listen343434 sil3434ent ereeeeee34344");
 
 console.log(result);

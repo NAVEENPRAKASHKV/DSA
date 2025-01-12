@@ -36,7 +36,67 @@ function replaceVowel(str) {
   return mapedArray.join("");
 }
 //word having no vowel in the sentence
+function findNonVowelWord(str) {
+  let vowelArray = ["a", "e", "i", "o", "u"];
+  let words = str.split(" ");
+  let NoVowelWord = [];
+  for (let word of words) {
+    let newWordArr = word.split("");
+    let vowel = newWordArr.filter((char) =>
+      vowelArray.includes(char.toLowerCase())
+    );
+    if (vowel.length === 0) NoVowelWord.push(word);
+  }
+  return NoVowelWord;
+}
+//swpaing string in the half
+function replaceChar(str, n) {
+  let strArray = str.split("");
+  let length = strArray.length;
+  for (let i = 0; i < length / 2; i++) {
+    let temp = strArray[i];
+    strArray[i] = strArray[length - 1 - i];
+    strArray[length - 1 - i] = temp;
+  }
+  return strArray.join("");
+}
+//find first non repeating character
+function nonRepetingChar(str) {
+  let strArray = str.split("");
+  let nonRepeatArray = strArray.filter((char, index, arr) => {
+    let firstIndex = arr.indexOf(char);
+    let lastIndex = arr.lastIndexOf(char);
+    if (firstIndex === lastIndex) {
+      return char;
+    }
+  });
+  return nonRepeatArray;
+}
+//finding the substrig
+function countSubString(str, substr) {
+  let indeces = [];
+  let index = str.indexOf(substr);
+  while (index !== -1) {
+    indeces.push(index);
+    index = str.indexOf(substr, index + 1);
+  }
+  return indeces;
+}
+// count no of words in the sentense
+function countWords(str) {
+  let filterArray = str.split(" ").filter((word) => word.length > 0);
+  return filterArray.length;
+}
+// converting a string to title case
+function titleCase(str) {
+  let arr = str.split(" ");
+  let mappedArray = arr.map((word) => {
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+  return mappedArray.join(" ");
+}
 
-const result = replaceVowel("noukri");
+function isAnagram(str1, str2) {}
+const result = titleCase("swssshsshsdsssh dsf defdf df df       ");
 
 console.log(result);

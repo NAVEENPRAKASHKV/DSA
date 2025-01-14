@@ -229,6 +229,34 @@ class LinkedList {
       prev.next = slow.next;
     }
   }
+  class ListNode {
+    constructor(value = 0, next = null) {
+        this.value = value;
+        this.next = next;
+    }
+}
+
+function findKthFromEnd( k) {
+    let fast = this.head;
+    let slow = this.head;
+
+    // Move the fast pointer k steps ahead
+    for (let i = 0; i < k; i++) {
+        if (fast === null) {
+            return null; // If k is greater than the length of the list
+        }
+        fast = fast.next;
+    }
+
+    // Move both fast and slow pointers until fast reaches the end
+    while (fast !== null) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+
+    return slow; // slow now points to the kth node from the end
+}
+
 }
 
 const myLinkedList = new LinkedList(2);

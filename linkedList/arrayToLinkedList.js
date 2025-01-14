@@ -18,7 +18,7 @@ function arrayToLL(arr) {
     current = newNode; // Move to the new node
     length++; // Increment length
   }
-
+    tail=current
   console.log("Length of Linked List:", length); // Optional
   return head; // Return the head of the linked list
 }

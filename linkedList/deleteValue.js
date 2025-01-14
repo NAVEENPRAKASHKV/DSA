@@ -40,11 +40,12 @@ class LinkedList {
   }
   //end method
   delete(value) {
+    if (!this.head) return undefined;
     let current = this.head;
     let pre = null;
 
     // Handle deletion of the head node
-    if (current && current.value === value) {
+    if (current.value === value) {
       this.head = current.next;
       current.next = null;
 
@@ -76,6 +77,7 @@ class LinkedList {
 
     // If the value is not found
     console.log("Node with value " + value + " not found.");
+    return null;
   }
   //end method
   insertBefore(value, newValue) {

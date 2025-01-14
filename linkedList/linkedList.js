@@ -12,7 +12,20 @@ class LinkedList {
     this.tail = newNode;
     this.length = 1;
   }
+  display() {
+    let current = this.head;
+    while (current) {
+      console.log(current.value);
+      current = current.next;
+    }
+  }
+  printReverse(current = this.head) {
+    if (current === null) return;
+    this.printReverse(current.next);
+    console.log(current.value);
+  }
   push(value) {
+    if (value === null || value === undefined) return undefined;
     const newNode = new Node(value);
     if (!this.head) {
       this.head = newNode;
@@ -25,26 +38,29 @@ class LinkedList {
     return this; // Return the linked list for chaining
   }
   pop() {
-    if (!this.head) return undefined; // Check if the list is empty
+    if (!this.head) return undefined; // If the list is empty, return undefined
+    let current = this.head;
+    let pre = null;
 
-    let pre = this.head;
-    let temp = this.head;
-
-    while (temp.next) {
-      pre = temp;
-      temp = temp.next;
+    // Traverse to the last node
+    while (current.next) {
+      pre = current;
+      current = current.next;
     }
 
-    this.tail = pre; // Update the tail to the second last node
-    this.tail.next = null; // Remove reference to the last node
-    this.length--;
-
-    if (this.length === 0) {
-      this.head = null;
-      this.tail = null; // Reset head and tail for an empty list
+    // Handle the case for a single-node list
+    if (pre) {
+      pre.next = null; // Remove the last node
+      this.tail = pre; // Update the tail
+    } else {
+      this.head = null; // Empty the list
+      this.tail = null;
     }
 
-    return temp; // Return the removed node
+    // Decrement the length safely
+    if (this.length > 0) this.length--;
+
+    return current; // Return the removed node
   }
   unshift(value) {
     const newNode = new Node(value);
@@ -165,13 +181,64 @@ class LinkedList {
     }
     return this;
   }
+  arrayToLl(arr) {
+    if (arr.length === 0) return null;
+
+    // Create the first node (head)
+    let newNode = new Node(arr[0]);
+    this.head = newNode;
+    this.tail = newNode; // Tail is the same as head initially
+    this.length = 1;
+
+    let current = newNode;
+
+    // Create the rest of the nodes
+    for (let i = 1; i < arr.length; i++) {
+      let newNode = new Node(arr[i]);
+      current.next = newNode;
+      current = newNode;
+    }
+
+    // After the loop, the last node will be the tail
+    this.tail = current;
+
+    return this.head;
+  }
+  removeDuplicateInSorted() {
+    if (!this.head) return;
+    let current = this.head;
+    while (current && current.next) {
+      if (current.value === current.next.value) {
+        current.next = current.next.next;
+        this.length--;
+      } else {
+        current = current.next;
+      }
+    }
+  }
+  removeMiddle() {
+    let slow = this.head;
+    let fast = this.head;
+    let prev = null;
+    while (fast && fast.next) {
+      prev = slow;
+      slow = slow.next;
+      fast = fast.next.next;
+    }
+    if (slow) {
+      prev.next = slow.next;
+    }
+  }
 }
 
-const myLinkedList = new LinkedList(20);
+const myLinkedList = new LinkedList(2);
 
 myLinkedList.push(3);
 myLinkedList.push(6);
+myLinkedList.push(6);
+myLinkedList.push(6);
 myLinkedList.push(9);
-myLinkedList.insert(1, 100);
-console.log(myLinkedList);
-console.log(myLinkedList.reverse());
+myLinkedList.display();
+console.log("..............");
+myLinkedList.removeDuplicateInSorted();
+myLinkedList.printReverse();

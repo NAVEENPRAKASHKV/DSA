@@ -5,7 +5,7 @@ class HashTable {
   _hash(key) {
     let hash = 0;
     for (let i = 0; i < key.length; i++) {
-      hash = (hash + hash.charCode(i) * 23) % this.dataMap.length;
+      hash = (hash + key.charCodeAt(i) * 23) % this.dataMap.length;
     }
     return hash;
   }
@@ -21,4 +21,4 @@ class HashTable {
 }
 
 const hashTable = new HashTable(2);
-console.log(hashTable);
+console.log(hashTable.set("naveen", "praksh"));

@@ -48,6 +48,15 @@ class HashTable {
     }
     return allKeys;
   }
+  display() {
+    for (let i = 0; i < this.dataMap.length; i++) {
+      if (this.dataMap[i]) {
+        for (let j = 0; j < this.dataMap[i].length; j++) {
+          console.log(`${this.dataMap[i][j][0]}: ${this.dataMap[i][j][1]}`);
+        }
+      }
+    }
+  }
 }
 
 const hashTable = new HashTable(9);

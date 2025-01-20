@@ -5,6 +5,7 @@ function mergeSort(arr) {
   const right = mergeSort(arr.slice(mid));
   return merge(left, right);
 }
+
 function merge(left, right) {
   const sortedArray = [];
   let i = 0;
@@ -21,4 +22,7 @@ function merge(left, right) {
   return [...sortedArray, ...left.slice(i), ...right.slice(j)];
 }
 
-console.log(mergeSort("prakash"));
+// Convert string to an array of characters, sort it, then join it back into a string
+const str = "prakash";
+const sortedStr = mergeSort(str.split("")).join("");
+console.log(sortedStr); // Output: "aakhprs"

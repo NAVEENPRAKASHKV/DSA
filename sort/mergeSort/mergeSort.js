@@ -23,6 +23,5 @@ function merge(left, right) {
 }
 
 const arr = [23, 33, 4, 2, 55, 6, 777, 8, 99];
-
 console.log(mergeSort(arr));
-console.log(arr); //original array not chaged during the merge sort
+console.log(arr); //original array not changed during the merge sort

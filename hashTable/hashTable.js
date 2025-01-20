@@ -10,7 +10,7 @@ class HashTable {
     }
     return hash;
   }
-  // to set the key and corrsponding value in the hash table
+  // to set the key and corrsponding value in the hash table chaing to handle collision
   set(key, value) {
     let index = this._hash(key);
     if (!this.dataMap[index]) {
@@ -56,6 +56,14 @@ class HashTable {
         }
       }
     }
+  }
+  //linear probing to set value (another method to deal collision)
+  setLinearProb() {
+    let index = this._hash(key);
+    while (this.dataMap[index] !== undefined) {
+      index = (index + 1) % this.dataMap.length;
+    }
+    this.dataMap[index] = [key, value];
   }
 }
 

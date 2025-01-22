@@ -132,6 +132,15 @@ function removeDigit(str) {
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 }
+// reverse setense by word by word
+function reverseSetByWord(str) {
+  return str
+    .split(" ") // Split the string into an array of words
+    .map((word) => word.split("").reverse().join("")) // Reverse each word
+    .join(" "); // Join reversed words with spaces
+}
+
+console.log(reverseSetByWord("this is naveen"));
 
 const result = largestWord("listen343434 sil3434ent ereeeeee34344");
 

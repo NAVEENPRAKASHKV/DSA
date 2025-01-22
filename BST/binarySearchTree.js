@@ -11,28 +11,43 @@ class BST {
     this.root = null;
   }
   insert(value) {
-    const newNode = new Node(value);
+    const newNode = new Node(value); // Create a new node with the given value
     if (this.root === null) {
-      this.root = newNode;
-      return this;
+      // If the tree is empty
+      this.root = newNode; // Set the new node as the root
+      return this; // Return the tree
     }
-    let temp = this.root;
+    let temp = this.root; // Start from the root node
     while (true) {
-      if (newNode.value === temp.value) return undefined;
+      if (newNode.value === temp.value) return undefined; // Prevent duplicates
       if (newNode.value < temp.value) {
+        // Move to the left subtree
         if (temp.left === null) {
-          temp.left = newNode;
-          return this;
+          // Found an empty spot
+          temp.left = newNode; // Insert the new node
+          return this; // Return the tree
         }
-        temp = temp.left;
+        temp = temp.left; // Move to the next left node
       } else {
+        // Move to the right subtree
         if (temp.right === null) {
-          temp.right = newNode;
-          return this;
+          // Found an empty spot
+          temp.right = newNode; // Insert the new node
+          return this; // Return the tree
         }
-        temp = temp.right;
+        temp = temp.right; // Move to the next right node
       }
     }
+  }
+  contain(value) {
+    if (this.root === null) return false;
+    let temp = this.root;
+    while (temp) {
+      if (value < temp.value) temp = temp.left;
+      else if (value > temp.value) temp = temp.right;
+      else return false;
+    }
+    return false;
   }
 }
 

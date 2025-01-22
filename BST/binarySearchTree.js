@@ -40,14 +40,18 @@ class BST {
     }
   }
   contain(value) {
-    if (this.root === null) return false;
-    let temp = this.root;
+    if (this.root === null) return false; // Empty tree
+    let temp = this.root; // Start from the root
     while (temp) {
-      if (value < temp.value) temp = temp.left;
-      else if (value > temp.value) temp = temp.right;
-      else return false;
+      if (value < temp.value) {
+        temp = temp.left; // Move to the left subtree
+      } else if (value > temp.value) {
+        temp = temp.right; // Move to the right subtree
+      } else {
+        return true; // Value matches the current node
+      }
     }
-    return false;
+    return false; // Value not found in the tree
   }
 }
 
@@ -56,3 +60,4 @@ bst.insert(34);
 bst.insert(35);
 bst.insert(36);
 console.log(bst);
+console.log(bst.contain(30));

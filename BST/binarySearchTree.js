@@ -57,18 +57,31 @@ class BST {
   rContain(value, currentNode = this.root) {
     if (currentNode === null) return false;
     if (currentNode.value === value) return true;
-    if (currentNode.value > value) {
+    if (value < currentNode.value) {
       return this.rContain(value, currentNode.left);
     } else {
       return this.rContain(value, currentNode.right);
     }
   }
+  #rInsert(value, currentNode = this.root) {
+    if (currentNode === null) return new Node(value);
+    if (value < currentNode.value) {
+      currentNode.left = this.#rInsert(value, currentNode.left);
+    } else if (value > currentNode.right) {
+      currentNode.right = this.#rInsert(value, currentNode.right);
+    }
+    return currentNode;
+  }
+  rInsert(value) {
+    if (this.root === null) this.root = new Node(value);
+    this.#rInsert(value);
+  }
 }
 
 const bst = new BST();
-bst.insert(34);
-bst.insert(35);
-bst.insert(36);
+bst.rInsert(34);
+bst.rInsert(35);
+bst.rInsert(36);
 console.log(bst);
 console.log(bst.rContain(34));
 console.log();

@@ -53,6 +53,16 @@ class BST {
     }
     return false; // Value not found in the tree
   }
+  // recursivaly checking value exist or not
+  rContain(value, currentNode = this.root) {
+    if (currentNode === null) return false;
+    if (currentNode.value === value) return true;
+    if (currentNode.value > value) {
+      return this.rContain(value, currentNode.left);
+    } else {
+      return this.rContain(value, currentNode.right);
+    }
+  }
 }
 
 const bst = new BST();
@@ -60,4 +70,5 @@ bst.insert(34);
 bst.insert(35);
 bst.insert(36);
 console.log(bst);
-console.log(bst.contain(30));
+console.log(bst.rContain(34));
+console.log();
